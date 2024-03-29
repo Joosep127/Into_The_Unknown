@@ -16,6 +16,8 @@ public class CharacterController2D : MonoBehaviour
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
+    bool canJump = true; // Flag to control jumping
+
     Vector3 cameraPos;
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
@@ -70,9 +72,10 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && canJump) // Check if grounded and can jump
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+            canJump = false; // Set canJump to false to prevent further jumps
         }
 
         // Camera follow
@@ -89,7 +92,7 @@ public class CharacterController2D : MonoBehaviour
         Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
         // Check if player is grounded
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
-        //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
+        // Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
         isGrounded = false;
         if (colliders.Length > 0)
         {
@@ -105,6 +108,12 @@ public class CharacterController2D : MonoBehaviour
 
         // Apply movement velocity
         r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+
+        // Reset jump flag if grounded
+        if (isGrounded)
+        {
+            canJump = true;
+        }
 
         // Simple debug
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
