@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 20f;
     public float movementSpeed = 5f;
     public float distanceDown = 0.6f;
+    public float distanceRight = 0.6f;
+    public float distanceLeft = 0.6f;
     public LayerMask collisionLayers;
     private Rigidbody2D rb;
     void Start()
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public bool is_wall_right() {
         Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceDown, collisionLayers);     
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceRight, collisionLayers);     
         if (Ground_Check.collider != null) {
             return true;
         } 
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
     public bool is_wall_left() {
         Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceDown, collisionLayers);     
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceLeft, collisionLayers);     
         if (Ground_Check.collider != null) {
             return true;
         } 
@@ -90,9 +92,9 @@ public class PlayerController : MonoBehaviour
                     rb.velocity = Vector2.up * jumpHeight;
                 }
         }
-        else {
+        /*else {
             velocity.y += Physics2D.gravity.y * Time.deltaTime;
-        }
+        }*/
         
 
     }
