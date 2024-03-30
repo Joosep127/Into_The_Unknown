@@ -14,6 +14,7 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float addTorqueAmountInDegrees;
 
     private Rigidbody2D rb;
+   
     
     private void Start()
     {
@@ -21,7 +22,12 @@ public class BulletBehaviour : MonoBehaviour
 
         SetDestroyTime();
         SetStraightVelocity();
+
+    
+
     }
+
+  
 
 
     private void OnCollisionEnter2D(Collision2D collision)

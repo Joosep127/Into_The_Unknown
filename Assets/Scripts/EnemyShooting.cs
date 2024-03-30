@@ -7,22 +7,37 @@ public class EnemyShooting : MonoBehaviour
    public GameObject bullet;
    public Transform bulletPos;
    private float timer;
+   
+   private GameObject player;
+
+   void Start()
+   {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+   }
 
 
    void Update()
    {
         timer += Time.deltaTime;
 
-        if(timer > 2)
+        float distance = Vector2.Distance(transform.position,player.transform.position);
+
+        if(distance < 10)
         {
-            timer = 0;
-            shoot();
+            timer += Time.deltaTime;
+            if(timer > 2)
+            {
+                timer = 0;
+                shoot();
+            }
         }
+
    }
 
    void shoot()
    {
-        // Instantiate(bullet,bulletPos.position,Quaternion.identity);
+        Instantiate(bullet,bulletPos.position,Quaternion.identity);
 
    }
 
