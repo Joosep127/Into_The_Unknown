@@ -142,8 +142,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   impactEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
-  explosionRadius: 0.25
+  explosionRadius: 0.5
   addTorqueAmountInDegrees: 0
+  explosionForce: 300
 --- !u!50 &1183444039330592561
 Rigidbody2D:
   serializedVersion: 4
