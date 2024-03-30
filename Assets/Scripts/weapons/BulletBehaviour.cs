@@ -9,38 +9,32 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float normalBulletSpeed = 15f;
     [SerializeField] private float destroyTime = 3f;
     [SerializeField] private LayerMask whatDestroysBullet;
-    [SerializeField] private Object impactEffect;
-    private Animator animator;
-
+    [SerializeField] private GameObject impactEffect;
+    private float explosionRadius;
+    [SerializeField] private float addTorqueAmountInDegrees;
+    [SerializeField] private CircleCollider2D circleCollider;
 
 
     private Rigidbody2D rb;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        animator.Play("Explosion");
 
         SetDestroyTime();
         SetStraightVelocity();
+        explosionRadius = circleCollider.radius;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ((whatDestroysBullet.value & (1 << collision.gameObject.layer)) > 0)
         {
-            Debug.Log("Explosion!!");
             // Particles
             // SFX
             // Screenshake
-            // Explosion
-            animator.Play("Explosion");
-            //animator.;
-            Object toRemove = Instantiate(impactEffect, transform.position, transform.rotation);
-
-            Destroy(toRemove, .5f);
+            // Explosion knockback
             Destroy(gameObject);
         }
     }
@@ -51,13 +45,30 @@ public class BulletBehaviour : MonoBehaviour
 
     private void SetDestroyTime ()
     {
-        //animator.Play("Explosion");
-
         Destroy(gameObject, destroyTime);
     }
 
     private void OnDestroy()
     {
-        animator.Play("Explosion");
+        Explode();
+    }
+
+    private void Explode ()
+    {
+        GameObject toRemove = Instantiate(impactEffect, transform.position, transform.rotation);
+        toRemove.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Rigidbody2D rigid = colliders[i].GetComponent<Rigidbody2D>();
+            if (rigid != null)
+            {
+                Debug.Log("Found component " + rigid.name);
+                rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
+            }
+        }
+
+        Destroy(toRemove, .5f);
     }
 }
