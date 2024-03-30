@@ -78,8 +78,11 @@ public class PlayerController : MonoBehaviour
         if (!((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l))) {
             velocity.x = 0;
         }
-
         
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Health.Instance.Damage(.1f);
+        }
 
 
         grounded = is_ground();
