@@ -96,5 +96,6 @@ public class PlayerController : MonoBehaviour
                     rb.velocity = Vector2.up * jumpHeight;
                 }
         } 
+        //velocity.y = rb.velocity.y;
     }    
 }
