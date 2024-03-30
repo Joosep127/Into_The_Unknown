@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 91734578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0465, y: -0.178, z: -1}
+  m_LocalPosition: {x: 0.017499957, y: 0.07370016, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 451a38088df8b2748818e8b152f47d3f, type: 3}
   m_Color: {r: 1, g: 0.05098039, b: 0.41987517, a: 1}
   m_FlipX: 0
@@ -1245,7 +1245,7 @@ Transform:
   m_GameObject: {fileID: 1246735495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: -3.31, z: 0}
+  m_LocalPosition: {x: -1.077, y: -3.108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1281,13 +1281,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 0
-  wall: 0
-  groundDeceleration: 50
+  wall_r: 0
+  wall_l: 0
+  groundDeceleration: 75
   airAcceleration: 10
   walkAcceleration: 50
-  jumpHeight: 20
-  movementSpeed: 5
-  distanceDown: 56
+  jumpHeight: 8
+  movementSpeed: 10
+  distanceDown: 0.6
   collisionLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -1361,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 1487259176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.548, y: 0, z: 0}
+  m_LocalPosition: {x: 0.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1393,7 +1394,7 @@ Transform:
   m_GameObject: {fileID: 1513708988}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.036, y: -0.2397, z: 0}
+  m_LocalPosition: {x: 0.007, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1439,7 +1440,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c195810ba5466d2418f50f1800ba10a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

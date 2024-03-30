@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 velocity;
     private BoxCollider2D boxCollider;
     public bool grounded;
-    public bool wall;
+    public bool wall_r;
+    public bool wall_l;
 
     public float groundDeceleration;
     public float airAcceleration;
@@ -31,23 +32,51 @@ public class PlayerController : MonoBehaviour
         } 
         return false;
     }
+
+    public bool is_wall_right() {
+        Vector2 player_pos = transform.position;
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceDown, collisionLayers);     
+        if (Ground_Check.collider != null) {
+            return true;
+        } 
+        return false;
+    }
+    public bool is_wall_left() {
+        Vector2 player_pos = transform.position;
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceDown, collisionLayers);     
+        if (Ground_Check.collider != null) {
+            return true;
+        } 
+        return false;
+    }
+
+
     private void Update()
     {
         float acceleration = grounded ? walkAcceleration : airAcceleration;
         float deceleration = grounded ? groundDeceleration : 0;
 
+        wall_r = is_wall_right();
+        wall_l = is_wall_left();
+
         transform.Translate(velocity * Time.deltaTime);
         float moveInput = Input.GetAxisRaw("Horizontal");
-velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, walkAcceleration * Time.deltaTime);
 
-        if (moveInput != 0)
-        {
+
+        if ((moveInput > 0 && !wall_r) || (moveInput < 0 && !wall_l)){
             velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            if ((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l)){
+                velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            }
+            else {
+                velocity.x = 0;
+            }
         }
+
+        
 
 
         grounded = is_ground();
@@ -64,6 +93,8 @@ velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, walkAccele
         else {
             velocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
+        
+
     }
 
     
