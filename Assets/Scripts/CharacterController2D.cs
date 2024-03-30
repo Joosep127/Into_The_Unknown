@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private Vector2 velocity;
+    public Vector2 velocity;
     private BoxCollider2D boxCollider;
     public bool grounded;
     public bool wall_r;
@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float distanceRight = 0.6f;
     public float distanceLeft = 0.6f;
     public LayerMask collisionLayers;
+
+    public bool DisableGrounded;
     private Rigidbody2D rb;
     void Start()
     {   
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool is_ground() {
         Vector2 player_pos = transform.position;
         RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.down, distanceDown, collisionLayers);     
-        if (Ground_Check.collider != null) {
+        if (Ground_Check.collider != null && !DisableGrounded) {
             return true;
         } 
         return false;
@@ -65,17 +67,16 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
 
 
+        
         if ((moveInput > 0 && !wall_r) || (moveInput < 0 && !wall_l)){
             velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, acceleration * Time.deltaTime);
         }
-        else
-        {
-            if ((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l)){
-                velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-            }
-            else {
-                velocity.x = 0;
-            }
+        else {
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+        }
+
+        if (!((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l))) {
+            velocity.x = 0;
         }
         
         if(Input.GetKeyDown(KeyCode.X))
@@ -94,13 +95,6 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.velocity = Vector2.up * jumpHeight;
                 }
-        }
-        /*else {
-            velocity.y += Physics2D.gravity.y * Time.deltaTime;
-        }*/
-        
-
-    }
-
-    
+        } 
+    }    
 }
