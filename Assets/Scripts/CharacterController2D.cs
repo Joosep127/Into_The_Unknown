@@ -23,6 +23,7 @@ public class CharacterController2D : MonoBehaviour
     CapsuleCollider2D mainCollider;
     Transform t;
 
+
     // Use this for initialization
     void Start()
     {
@@ -33,6 +34,7 @@ public class CharacterController2D : MonoBehaviour
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
+
 
         if (mainCamera)
         {
@@ -69,6 +71,11 @@ public class CharacterController2D : MonoBehaviour
                 facingRight = false;
                 t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
             }
+        }
+        
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Health.Instance.Damage(.1f);
         }
 
         // Jumping
