@@ -106,7 +106,7 @@ public class BulletBehaviour : MonoBehaviour
         //playerScript.grounded = false;
         rb2.velocity = Vector2.up * explosionDir.y * explosionForce * -1 / 10 * upmod;
         playerScript.velocity = explosionForce * (1 - explosionDistance) * Vector2.right * explosionDir.x * sidemod;
-//        playerScript.DisableGrounded = false;
+        //playerScript.DisableGrounded = false;
     }
 
 
