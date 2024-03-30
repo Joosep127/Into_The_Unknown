@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 7085066667642985709}
   - component: {fileID: 4993923519547521539}
   - component: {fileID: 1262457249820730759}
-  - component: {fileID: -5377206815114019591}
   - component: {fileID: 1183444039330592561}
   - component: {fileID: 5092967028373672317}
   - component: {fileID: 5189056875502912662}
   - component: {fileID: 5166706473644828809}
+  - component: {fileID: 1039926471533706723}
   m_Layer: 0
   m_Name: Enemy Bullet
   m_TagString: Untagged
@@ -119,32 +119,12 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0008745692, y: -0.00087527925}
   m_Size: {x: 0.14892143, y: 0.14903523}
   m_Direction: 1
---- !u!114 &-5377206815114019591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859544675642024930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7c9f241c13224249bb8dee68d596714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalBulletSpeed: 15
-  destroyTime: 15
-  whatDestroysBullet:
-    serializedVersion: 2
-    m_Bits: 256
-  impactEffect: {fileID: 0}
-  addTorqueAmountInDegrees: 0
-  circleCollider: {fileID: 5166706473644828809}
 --- !u!50 &1183444039330592561
 Rigidbody2D:
   serializedVersion: 4
@@ -220,7 +200,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859544675642024930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -248,3 +228,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.0064534247}
   serializedVersion: 2
   m_Radius: 0.0001
+--- !u!114 &1039926471533706723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859544675642024930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88c661048235284cb9f55dc10df293a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 5

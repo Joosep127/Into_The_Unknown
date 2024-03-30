@@ -29,7 +29,12 @@ public class BulletBehaviour : MonoBehaviour
 
         SetDestroyTime();
         SetStraightVelocity();
+
+    
+
     }
+
+  
 
 
     private void OnCollisionEnter2D(Collision2D collision)
