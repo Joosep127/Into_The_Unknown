@@ -28,6 +28,6 @@ public class Health : MonoBehaviour
 
     public void Damage(float damage) 
     {
-        slider.value -= damage;
+        slider.value -= damage / 100;
     }
 }

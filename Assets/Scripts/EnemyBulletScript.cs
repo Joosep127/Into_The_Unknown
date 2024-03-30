@@ -10,6 +10,10 @@ public class EnemyBulletScript : MonoBehaviour
 
     public float timer;
 
+    //public PlayerHealth pHealth;
+
+    //public float damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +38,12 @@ public class EnemyBulletScript : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if(other.gameObject.CompareTag("Player"))
+        
+        if(collision.gameObject.CompareTag("Player"))
         {
-            // other.gameObject.GetComponent<playerHealth>().health -=20;
-            
+            Health.Instance.Damage(20);
             Destroy(gameObject);
         }
     }
