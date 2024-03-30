@@ -8,23 +8,21 @@ public class EnemyShooting : MonoBehaviour
     public Transform bulletPos;
     private float timer;
 
+    
     private GameObject player;
-
-    public PlayerHealth pHealth;
-
-    public float damage;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
     }
+
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        Debug.Log(bulletPos, player);
+        float distance = Vector2.Distance(bulletPos.position, player.transform.position);
 
         if (distance < 10)
         {
