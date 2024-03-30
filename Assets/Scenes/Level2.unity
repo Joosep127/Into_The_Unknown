@@ -2061,7 +2061,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2135957558}
   - component: {fileID: 2135957557}
   m_Layer: 0
   m_Name: bg0
@@ -2520,7 +2519,6 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2135957558}
   - {fileID: 519420032}
   - {fileID: 290962648}
   - {fileID: 1246735499}
