@@ -1279,12 +1279,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 0
-  groundDeceleration: 50
+  wall: 0
+  groundDeceleration: 75
   airAcceleration: 10
   walkAcceleration: 50
-  jumpHeight: 20
+  jumpHeight: 8
   movementSpeed: 5
-  distanceDown: 56
+  distanceDown: 0.6
   collisionLayers:
     serializedVersion: 2
     m_Bits: 128
