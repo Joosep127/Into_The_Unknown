@@ -10,20 +10,17 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float destroyTime = 3f;
     [SerializeField] private LayerMask whatDestroysBullet;
     [SerializeField] private GameObject impactEffect;
-    private float explosionRadius;
+    [SerializeField] private float explosionRadius;
     [SerializeField] private float addTorqueAmountInDegrees;
-    [SerializeField] private CircleCollider2D circleCollider;
-
 
     private Rigidbody2D rb;
-
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         SetDestroyTime();
         SetStraightVelocity();
-        explosionRadius = circleCollider.radius;
     }
 
 
@@ -65,10 +62,33 @@ public class BulletBehaviour : MonoBehaviour
             if (rigid != null)
             {
                 Debug.Log("Found component " + rigid.name);
-                rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
+
+                rigid.AddExplosionForce(300, transform.position, explosionRadius);
+
+                //rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
             }
         }
 
         Destroy(toRemove, .5f);
     }
+
+    //public static void AddExplosionForce(this Rigidbody2D rb, float explosionForce, Vector2 explosionPosition, float explosionRadius, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
+    //{
+    //    var explosionDir = rb.position - explosionPosition;
+    //    var explosionDistance = explosionDir.magnitude;
+
+    //    // Normalize without computing magnitude again
+    //    if (upwardsModifier == 0)
+    //        explosionDir /= explosionDistance;
+    //    else
+    //    {
+    //        // From Rigidbody.AddExplosionForce doc:
+    //        // If you pass a non-zero value for the upwardsModifier parameter, the direction
+    //        // will be modified by subtracting that value from the Y component of the centre point.
+    //        explosionDir.y += upwardsModifier;
+    //        explosionDir.Normalize();
+    //    }
+
+    //    rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
+    //}
 }
