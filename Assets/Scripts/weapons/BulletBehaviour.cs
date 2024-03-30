@@ -10,10 +10,8 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private float destroyTime = 3f;
     [SerializeField] private LayerMask whatDestroysBullet;
     [SerializeField] private GameObject impactEffect;
-    private float explosionRadius;
+    [SerializeField] private float explosionRadius;
     [SerializeField] private float addTorqueAmountInDegrees;
-    [SerializeField] private CircleCollider2D circleCollider;
-
 
     private Rigidbody2D rb;
     
@@ -23,7 +21,6 @@ public class BulletBehaviour : MonoBehaviour
 
         SetDestroyTime();
         SetStraightVelocity();
-        explosionRadius = circleCollider.radius;
     }
 
 
@@ -65,8 +62,8 @@ public class BulletBehaviour : MonoBehaviour
             if (rigid != null)
             {
                 Debug.Log("Found component " + rigid.name);
-                //rigid.AddForce(new Vector2(0, 0));
-                rigid.AddExplosionForce(100, transform.position, 20);
+
+                rigid.AddExplosionForce(300, transform.position, explosionRadius);
 
                 //rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
             }
