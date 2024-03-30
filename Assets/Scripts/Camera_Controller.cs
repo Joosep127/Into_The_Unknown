@@ -25,6 +25,7 @@ public class Camera_Controller : MonoBehaviour
     }
     public bool is_wall_left() {
         Vector2 player_pos = transform.position;
+        Debug.DrawRay(player_pos, Vector2.left * distanceSide, Color.green);
         RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceSide, collisionLayers);     
         if (Ground_Check.collider != null) {
             return true;
@@ -42,6 +43,7 @@ public class Camera_Controller : MonoBehaviour
     }
     public bool is_wall_down() {
         Vector2 player_pos = transform.position;
+        Debug.DrawRay(player_pos, Vector2.down * distanceLat, Color.green);
         RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.down, distanceLat, collisionLayers);     
 
         if (Ground_Check.collider != null) {
@@ -62,6 +64,7 @@ public class Camera_Controller : MonoBehaviour
     {
         Debug.Log(is_wall_left());
         velocity = (player.transform.position + new Vector3(0,2,0) - transform.position)*10;
+        Debug.Log(velocity.x);
         if (is_wall_right() && velocity.x > 0){
             velocity.x = 0;
         }
