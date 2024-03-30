@@ -145,6 +145,9 @@ MonoBehaviour:
   explosionRadius: 0.5
   addTorqueAmountInDegrees: 0
   explosionForce: 300
+  player: {fileID: 0}
+  sidemod: 0.25
+  upmod: 0.7
 --- !u!50 &1183444039330592561
 Rigidbody2D:
   serializedVersion: 4

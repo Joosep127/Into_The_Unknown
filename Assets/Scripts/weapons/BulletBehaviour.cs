@@ -17,6 +17,9 @@ public class BulletBehaviour : MonoBehaviour
 
     private Rigidbody2D rb;
     private Rigidbody2D rb2;
+
+    public float sidemod;
+    public float upmod;
     
     private void Start()
     {
@@ -101,9 +104,8 @@ public class BulletBehaviour : MonoBehaviour
         
         //playerScript.DisableGrounded = true;
         //playerScript.grounded = false;
-        rb2.velocity = Vector2.up * explosionDir.y * explosionForce * -1 / 5;
-        Debug.Log(explosionDir.y);
-        playerScript.velocity = explosionForce * (1 - explosionDistance) * Vector2.right * explosionDir.x;
+        rb2.velocity = Vector2.up * explosionDir.y * explosionForce * -1 / 10 * upmod;
+        playerScript.velocity = explosionForce * (1 - explosionDistance) * Vector2.right * explosionDir.x * sidemod;
 //        playerScript.DisableGrounded = false;
     }
 
