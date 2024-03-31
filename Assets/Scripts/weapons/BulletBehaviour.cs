@@ -18,6 +18,9 @@ public class BulletBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Rigidbody2D rb2;
 
+    public AudioClip explosionSound;
+
+    private AudioSource audioSource;
     public float sidemod;
     public float upmod;
     private void Start()
@@ -25,6 +28,7 @@ public class BulletBehaviour : MonoBehaviour
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         rb2 = player.GetComponent<Rigidbody2D>();
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         SetDestroyTime();
         SetStraightVelocity();
@@ -45,12 +49,12 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void SetStraightVelocity ()
+    private void SetStraightVelocity()
     {
         rb.velocity = transform.right * normalBulletSpeed;
     }
 
-    private void SetDestroyTime ()
+    private void SetDestroyTime()
     {
         Destroy(gameObject, destroyTime);
     }
@@ -60,8 +64,9 @@ public class BulletBehaviour : MonoBehaviour
         Explode();
     }
 
-    private void Explode ()
+    private void Explode()
     {
+        audioSource.PlayOneShot(explosionSound);
         GameObject toRemove = Instantiate(impactEffect, transform.position, transform.rotation);
         toRemove.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -92,7 +97,8 @@ public class BulletBehaviour : MonoBehaviour
         var explosionDistance = explosionDir.magnitude;
 
         // Normalize without computing magnitude again
-        if (upwardsModifier == 0) {
+        if (upwardsModifier == 0)
+        {
             explosionDir /= explosionDistance;
         }
         else
@@ -107,7 +113,7 @@ public class BulletBehaviour : MonoBehaviour
         // rb2 = player.GetComponent<Rigidbody2D>();
         // rb2.AddForce(Mathf.Lerp(0, explosionForce, (1.5f - explosionDistance)) * explosionDir, mode);
         PlayerController playerScript = player.GetComponent<PlayerController>();
-        
+
         //playerScript.DisableGrounded = true;
         //playerScript.grounded = false;
         rb2.velocity += Vector2.up * explosionDir.y * explosionForce * -1 / 10 * upmod;

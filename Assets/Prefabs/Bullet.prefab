@@ -146,6 +146,7 @@ MonoBehaviour:
   addTorqueAmountInDegrees: 0
   explosionForce: 300
   player: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: 95c7ab4f705ae9341896c99d37a03eac, type: 3}
   sidemod: 0.2
   upmod: 0.9
 --- !u!50 &1183444039330592561
