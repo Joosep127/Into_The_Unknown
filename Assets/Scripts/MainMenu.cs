@@ -25,9 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("Continute Game Clicked");
         Application.Quit();
-    
     }
 
 }

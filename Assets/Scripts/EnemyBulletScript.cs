@@ -46,10 +46,8 @@ public class EnemyBulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         audioSource.PlayOneShot(clickSound);
-        Debug.Log("Preparing to Destroy on collision");
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Destroy on collision");
             Health.Instance.Damage(20);
             Destroy(gameObject);
         }
@@ -59,10 +57,8 @@ public class EnemyBulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         audioSource.PlayOneShot(clickSound);
-        Debug.Log("Preparing to Destroy on Trigger");
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Destroy on Trigger");
             Health.Instance.Damage(20);
             Destroy(gameObject);
         }

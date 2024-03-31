@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         currentHealth -= damageAmount;
 
-        Debug.Log("Damage");
         if (currentHealth <= 0)
         {
             Debug.Log("Die");
