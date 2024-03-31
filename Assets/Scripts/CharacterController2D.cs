@@ -1,7 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public AudioClip jumpsound;
+    private AudioSource audioSource;
 
     public Vector2 velocity;
     private BoxCollider2D boxCollider;
@@ -21,10 +25,13 @@ public class PlayerController : MonoBehaviour
 
     public bool DisableGrounded;
     private Rigidbody2D rb;
+
+    public static SceneController Instance;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         velocity = Vector2.zero;
     }
 
@@ -63,9 +70,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown("escape"))
         {
-            Application.Quit();
+            StartCoroutine(SceneController.Instance.LoadLevel(0));
         }
 
         float acceleration = grounded ? walkAcceleration : airAcceleration;
@@ -105,9 +112,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
 
-            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("W") || Input.GetButtonDown("UpArrow"))
+            if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("w")) || (Input.GetKeyDown("uparrow")))
             {
                 rb.velocity = Vector2.up * jumpHeight;
+                audioSource.PlayOneShot(jumpsound);
             }
         }
         //velocity.y = rb.velocity.y;

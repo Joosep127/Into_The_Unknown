@@ -20,7 +20,7 @@ public class SoundEffectsPlayer : MonoBehaviour
 
     public void PlayClickSound()
     {
-        audioSource.PlayOneShot(click);
+        audioSource.PlayOneShot(jumpsound);
     }
 
     // public static void PlaySound(AudioSource sound) {
