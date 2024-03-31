@@ -40,6 +40,15 @@ public class EnemyBulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+    
+        Debug.Log("Preparing to Destroy on collision");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Destroy on collision");
+            Health.Instance.Damage(20);
+            Destroy(gameObject);
+        }
+
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
