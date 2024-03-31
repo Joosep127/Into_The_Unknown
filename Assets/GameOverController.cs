@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour
 {
 
@@ -24,5 +24,20 @@ public class GameOverController : MonoBehaviour
     {
         // this.Enable();
         Invoke("Enable", 3.0f);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        StartCoroutine(SceneController.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

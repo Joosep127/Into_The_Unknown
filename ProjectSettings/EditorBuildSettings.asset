@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Speed_level1.unity
     guid: 5619efcd38bc449428f8f1631a142e17
   - enabled: 1
-    path: Assets/Scenes/Gameover.unity
+    path: Assets/Scenes/Credits.unity
     guid: 3452562239bba12429292c6bff67a241
   m_configObjects: {}

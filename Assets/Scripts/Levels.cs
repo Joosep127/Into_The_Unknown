@@ -13,6 +13,10 @@ public class Levels : MonoBehaviour
                 levels.SetActive(false);
         }
 
+        public void Zero()
+        {
+                StartCoroutine(SceneController.Instance.LoadLevel(1 - 1));
+        }
         public void One()
         {
                 StartCoroutine(SceneController.Instance.LoadLevel(2 - 1));

@@ -22,35 +22,41 @@ public class PlayerController : MonoBehaviour
     public bool DisableGrounded;
     private Rigidbody2D rb;
     void Start()
-    {   
+    {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         velocity = Vector2.zero;
     }
 
-    public bool is_ground() {
+    public bool is_ground()
+    {
         Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.down, distanceDown, collisionLayers);     
-        if (Ground_Check.collider != null && !DisableGrounded) {
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.down, distanceDown, collisionLayers);
+        if (Ground_Check.collider != null && !DisableGrounded)
+        {
             return true;
-        } 
+        }
         return false;
     }
 
-    public bool is_wall_right() {
+    public bool is_wall_right()
+    {
         Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceRight, collisionLayers);     
-        if (Ground_Check.collider != null) {
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceRight, collisionLayers);
+        if (Ground_Check.collider != null)
+        {
             return true;
-        } 
+        }
         return false;
     }
-    public bool is_wall_left() {
+    public bool is_wall_left()
+    {
         Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceLeft, collisionLayers);     
-        if (Ground_Check.collider != null) {
+        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceLeft, collisionLayers);
+        if (Ground_Check.collider != null)
+        {
             return true;
-        } 
+        }
         return false;
     }
 
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            Application.Quit();
         }
 
         float acceleration = grounded ? walkAcceleration : airAcceleration;
@@ -72,19 +78,22 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
 
 
-        
-        if ((moveInput > 0 && !wall_r) || (moveInput < 0 && !wall_l)){
+
+        if ((moveInput > 0 && !wall_r) || (moveInput < 0 && !wall_l))
+        {
             velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, acceleration * Time.deltaTime);
         }
-        else {
+        else
+        {
             velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
         }
 
-        if (!((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l))) {
+        if (!((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l)))
+        {
             velocity.x = 0;
         }
-        
-        if(Input.GetKeyDown(KeyCode.X))
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
             Health.Instance.Damage(.1f);
         }
@@ -96,11 +105,11 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
 
-            if (Input.GetButtonDown("Jump"))
-                {
-                    rb.velocity = Vector2.up * jumpHeight;
-                }
-        } 
+            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("W") || Input.GetButtonDown("UpArrow"))
+            {
+                rb.velocity = Vector2.up * jumpHeight;
+            }
+        }
         //velocity.y = rb.velocity.y;
-    }    
+    }
 }
