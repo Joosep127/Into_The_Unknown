@@ -62,9 +62,7 @@ public class Camera_Controller : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(is_wall_left());
         velocity = (player.transform.position + new Vector3(0,2,0) - transform.position)*10;
-        Debug.Log(velocity.x);
         if (is_wall_right() && velocity.x > 0){
             velocity.x = 0;
         }

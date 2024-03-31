@@ -20,7 +20,6 @@ public class BulletBehaviour : MonoBehaviour
 
     public float sidemod;
     public float upmod;
-    
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -29,22 +28,20 @@ public class BulletBehaviour : MonoBehaviour
 
         SetDestroyTime();
         SetStraightVelocity();
-
-    
-
     }
 
-  
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((whatDestroysBullet.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            Destroy(gameObject);
+        }
 
-
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((whatDestroysBullet.value & (1 << collision.gameObject.layer)) > 0)
+        if ((whatDestroysBullet.value & (1 << collision.gameObject.layer)) != 0)
         {
-            // Particles
-            // SFX
-            // Screenshake
-            // Explosion knockback
             Destroy(gameObject);
         }
     }
@@ -72,12 +69,16 @@ public class BulletBehaviour : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody2D rigid = colliders[i].GetComponent<Rigidbody2D>();
+
+            //if (temp != null)
             if (rigid != null)
             {
-
                 AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
 
-                //rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
+            if (colliders[i].gameObject.GetComponent<IDamageable>() != null)
+            {
+                colliders[i].gameObject.GetComponent<IDamageable>().Damage(20);
             }
         }
 

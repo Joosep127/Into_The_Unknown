@@ -15,73 +15,72 @@ public class Levels : MonoBehaviour
 
         public void One()
         {
-                Debug.Log("Ibe");
-                StartCoroutine(SceneController.Instance.LoadLevel(2));
+                StartCoroutine(SceneController.Instance.LoadLevel(2 - 1));
         }
 
         public void Two()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(3));
+                StartCoroutine(SceneController.Instance.LoadLevel(3 - 1));
         }
 
         public void Three()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(4));
+                StartCoroutine(SceneController.Instance.LoadLevel(4 - 1));
         }
 
         public void Four()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(5));
+                StartCoroutine(SceneController.Instance.LoadLevel(5 - 1));
         }
 
         public void Five()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(6));
+                StartCoroutine(SceneController.Instance.LoadLevel(6 - 1));
         }
 
         public void Six()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(7));
+                StartCoroutine(SceneController.Instance.LoadLevel(7 - 1));
         }
 
         public void Seven()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(8));
+                StartCoroutine(SceneController.Instance.LoadLevel(8 - 1));
         }
 
         public void Eight()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(9));
+                StartCoroutine(SceneController.Instance.LoadLevel(9 - 1));
         }
 
         public void Nine()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(10));
+                StartCoroutine(SceneController.Instance.LoadLevel(10 - 1));
         }
 
         public void Ten()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(11));
+                StartCoroutine(SceneController.Instance.LoadLevel(11 - 1));
         }
 
         public void Eleven()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(12));
+                StartCoroutine(SceneController.Instance.LoadLevel(12 - 1));
         }
 
         public void Twelve()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(13));
+                StartCoroutine(SceneController.Instance.LoadLevel(13 - 1));
         }
 
         public void Thirteen()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(14));
+                StartCoroutine(SceneController.Instance.LoadLevel(14 - 1));
         }
 
         public void Fourteen()
         {
-                StartCoroutine(SceneController.Instance.LoadLevel(15));
+                StartCoroutine(SceneController.Instance.LoadLevel(15 - 1));
 
         }
 }

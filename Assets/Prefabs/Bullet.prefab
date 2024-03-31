@@ -118,7 +118,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.010217032, y: -0.00087527756}
@@ -140,7 +140,7 @@ MonoBehaviour:
   destroyTime: 3
   whatDestroysBullet:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   impactEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   explosionRadius: 1
   addTorqueAmountInDegrees: 0

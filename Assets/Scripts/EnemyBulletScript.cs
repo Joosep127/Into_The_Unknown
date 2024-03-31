@@ -38,13 +38,20 @@ public class EnemyBulletScript : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if(collision.gameObject.CompareTag("Player"))
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+    
+        Debug.Log("Preparing to Destroy on Trigger");
+        if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Destroy on Trigger");
             Health.Instance.Damage(20);
             Destroy(gameObject);
         }
+
     }
 }
