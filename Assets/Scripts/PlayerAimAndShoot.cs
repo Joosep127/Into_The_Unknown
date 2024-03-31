@@ -13,6 +13,11 @@ public class PlayerAimAndShoot : MonoBehaviour
     private Vector2 direction;
 
     private float angle;
+
+    // Delay between shots
+    [SerializeField] private float shootDelay = 0.5f;
+    private float shootTimer = 0f;
+
     // Update is called once per frame
     void Update()
     {
@@ -29,21 +34,20 @@ public class PlayerAimAndShoot : MonoBehaviour
         gun.transform.right = direction;
 
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-
-        //if (angle > 90 || angle < -90)
-        //{
-        //    gun.transform.localScale *= 1;
-        //}
-        //else
-        //{
-        //   gun.transform.localScale *= -1;
-        //}
     }
-    private void HandleGunShooting ()
+
+    private void HandleGunShooting()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        // Increment the shoot timer
+        shootTimer += Time.deltaTime;
+
+        // Check if the shoot timer has reached the shoot delay
+        if (Mouse.current.leftButton.wasPressedThisFrame && shootTimer >= shootDelay)
         {
+            // Reset the shoot timer
+            shootTimer = 0f;
+
+            // Spawn the bullet
             bulletInst = Instantiate(bullet, bulletSpawnPoint.position, gun.transform.rotation);
         }
     }
