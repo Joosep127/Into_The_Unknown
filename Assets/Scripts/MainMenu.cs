@@ -12,24 +12,22 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continuteGameButton;
 
+    public GameObject mainmenu;
+    public GameObject Levels;
+
+
     public void OnNewGameClicked()
     {
-        DisableMenuButtons();
-        Debug.Log("New Game Clicked");
-        SceneManager.LoadSceneAsync("SampleScene");
+        Levels.SetActive(true);
+        mainmenu.SetActive(false);
+        //SceneManager.LoadSceneAsync("SampleScene");
     }
 
     public void Exit()
     {
-        DisableMenuButtons();
         Debug.Log("Continute Game Clicked");
         Application.Quit();
     
     }
 
-    private void DisableMenuButtons()
-    {
-        newGameButton.interactable = false;
-        continuteGameButton.interactable = false;
-    }
 }
