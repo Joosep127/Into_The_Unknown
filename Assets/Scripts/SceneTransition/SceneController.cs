@@ -5,33 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] Animator transitionAnim;
 
     #region Singleton
     public static SceneController Instance;
+
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else
+        }
+        else
         {
             Destroy(gameObject);
         }
     }
     #endregion
 
-    [SerializeField] Animator transitionAnim;
+
+    // void Start()
+    // {
+    //     transitionAnim = GetComponent<Animator>();
+    // }
     public void NextLevel()
     {
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadLevel()
+    public IEnumerator LoadLevel(int index)
     {
-        transitionAnim.SetTrigger("End");
+        transitionAnim.Play("End");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        transitionAnim.SetTrigger("Start");
+        SceneManager.LoadSceneAsync(index);
+        transitionAnim.Play("Start");
     }
 }
