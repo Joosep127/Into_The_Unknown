@@ -72,7 +72,12 @@ public class BulletBehaviour : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody2D rigid = colliders[i].GetComponent<Rigidbody2D>();
+                if (iDamagable != null)
+            {
+
+            }
             if (rigid != null)
+
             {
 
                 AddExplosionForce(explosionForce, transform.position, explosionRadius);
