@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
 
     private Slider slider;
 
+    public GameObject gameOverMenu;
+
     private void Start()
     {
         slider = GetComponent<Slider>();
@@ -32,8 +34,7 @@ public class Health : MonoBehaviour
 
         if (slider.value <= 0)
         {
-            Debug.Log("dead");
-            GameOverController.Instance.SetActive(true);
+            gameOverMenu.SetActive(true);
         }
     }
 }
