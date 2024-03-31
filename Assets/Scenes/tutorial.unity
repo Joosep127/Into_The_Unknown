@@ -19778,7 +19778,7 @@ GameObject:
   - component: {fileID: 1034618538}
   - component: {fileID: 1034618537}
   - component: {fileID: 1034618539}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Tilemap CameraBlockers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22548,6 +22548,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1697995880082099712, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697995880082099712, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697995880082099712, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697995880082099712, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2966380808597251802, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -22626,6 +22642,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966380808597251802, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535520180251956021, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535520180251956021, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535520180251956021, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535520180251956021, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8912061761665323063, guid: e738684e0d4aaac4bb27e275c11ab8d5, type: 3}

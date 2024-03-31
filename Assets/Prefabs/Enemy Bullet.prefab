@@ -242,3 +242,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   timer: 1
+  clickSound: {fileID: 8300000, guid: 95c7ab4f705ae9341896c99d37a03eac, type: 3}

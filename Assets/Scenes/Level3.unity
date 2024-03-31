@@ -416,7 +416,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -512,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   distanceLat: 8
   distanceSide: 14.3
 --- !u!1001 &633372880
@@ -11998,7 +11997,7 @@ GameObject:
   - component: {fileID: 1313075987}
   - component: {fileID: 1313075986}
   - component: {fileID: 1313075988}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: TIlemap CameraBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
