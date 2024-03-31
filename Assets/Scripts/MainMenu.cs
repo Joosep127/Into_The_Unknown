@@ -16,13 +16,12 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         Debug.Log("New Game Clicked");
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadSceneAsync("Level1");
     }
 
     public void Exit()
     {
         DisableMenuButtons();
-        Debug.Log("Continute Game Clicked");
         Application.Quit();
     
     }
