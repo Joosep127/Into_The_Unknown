@@ -140,7 +140,7 @@ MonoBehaviour:
   destroyTime: 3
   whatDestroysBullet:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   impactEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   explosionRadius: 1
   addTorqueAmountInDegrees: 0

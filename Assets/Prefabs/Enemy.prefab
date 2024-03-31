@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5670566366391609617}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 8193087924300108355}
   - component: {fileID: 2457482742455786070}
   - component: {fileID: 6734339039574592778}
-  - component: {fileID: 8990587547133630301}
-  m_Layer: 0
+  - component: {fileID: 8254864538765917121}
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 7611196666318355145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77, y: 2.03, z: 0}
+  m_LocalPosition: {x: -3.4421484, y: -1.0480425, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -168,7 +168,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!114 &8990587547133630301
+--- !u!114 &8254864538765917121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7611196666318355145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4ab6397e115624c8488edac527e170, type: 3}
+  m_Script: {fileID: 11500000, guid: 641fd1b725b34fa449a65cd9139d993c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 21
