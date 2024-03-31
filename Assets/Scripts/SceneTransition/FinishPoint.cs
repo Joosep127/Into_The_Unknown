@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FinishPoint : MonoBehaviour
 {
+
+    public static SceneController Instance;
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Enter new close trigger level player");
