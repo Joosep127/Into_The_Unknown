@@ -3,35 +3,17 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public AudioClip jumpsound;
-    private AudioSource audioSource;
-
-    public Vector2 velocity;
-    private BoxCollider2D boxCollider;
-    public bool grounded;
-    public bool wall_r;
-    public bool wall_l;
-
-    public float groundDeceleration;
-    public float airAcceleration;
-    public float walkAcceleration;
-    public float jumpHeight = 20f;
-    public float movementSpeed = 5f;
-    public float distanceDown = 0.6f;
-    public float distanceRight = 0.6f;
-    public float distanceLeft = 0.6f;
+    public Vector2 velocity; // How fast you're moving in a direction
+    public float jumpHeight = 20f; // how high you jump
+    public float movementSpeed = 5f; // How fast you can run
+    public float distanceDown = 0.6f; // The distance it checks if you're grounded or not
     public LayerMask collisionLayers;
 
-    public bool DisableGrounded;
     private Rigidbody2D rb;
 
-    public static SceneController Instance;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        audioSource = GetComponent<AudioSource>();
         velocity = Vector2.zero;
     }
 
@@ -39,85 +21,36 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 player_pos = transform.position;
         RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.down, distanceDown, collisionLayers);
-        if (Ground_Check.collider != null && !DisableGrounded)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public bool is_wall_right()
-    {
-        Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.right, distanceRight, collisionLayers);
         if (Ground_Check.collider != null)
         {
             return true;
         }
         return false;
     }
-    public bool is_wall_left()
-    {
-        Vector2 player_pos = transform.position;
-        RaycastHit2D Ground_Check = Physics2D.Raycast(player_pos, Vector2.left, distanceLeft, collisionLayers);
-        if (Ground_Check.collider != null)
-        {
-            return true;
-        }
-        return false;
-    }
-
 
     private void Update()
     {
-        if (Input.GetKeyDown("escape"))
-        {
-            StartCoroutine(SceneController.Instance.LoadLevel(0));
-        }
-
-        float acceleration = grounded ? walkAcceleration : airAcceleration;
-        float deceleration = grounded ? groundDeceleration : 0;
-
-        wall_r = is_wall_right();
-        wall_l = is_wall_left();
-
-        transform.Translate(velocity * Time.deltaTime);
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        ForceMode2D mode = ForceMode2D.Force;
+        float moveInput = Input.GetAxisRaw("Horizontal"); // Gets your input
+        bool grounded = is_ground(); // Checks if you're on the ground
 
 
-
-        if ((moveInput > 0 && !wall_r) || (moveInput < 0 && !wall_l))
-        {
-            velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, acceleration * Time.deltaTime);
-        }
-        else
-        {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-        }
-
-        if (!((velocity.x > 0 && !wall_r) || (velocity.x < 0 && !wall_l)))
-        {
-            velocity.x = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Health.Instance.Damage(.1f);
-        }
-
-
-        grounded = is_ground();
 
         if (grounded)
         {
-            velocity.y = 0;
-
-            if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("w")) || (Input.GetKeyDown("uparrow")))
+            if ((Input.GetKeyDown("space")) || (Input.GetKeyDown("w"))) // Makes you jump if you're on the ground
             {
-                rb.velocity = Vector2.up * jumpHeight;
-                audioSource.PlayOneShot(jumpsound);
+                rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse); // launches the player upwards
             }
         }
-        //velocity.y = rb.velocity.y;
+        if (moveInput == 0 && grounded)
+        {
+            velocity.x = 0;
+        }
+        else
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, movementSpeed * moveInput, 20 * Time.deltaTime); // This tells the program how fast you're going to be moving when pressing A or D
+        }
+        rb.AddForce(velocity, mode); // This makes the character move
     }
 }

@@ -145,7 +145,7 @@ MonoBehaviour:
   impactEffect: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   explosionRadius: 0.5
   addTorqueAmountInDegrees: 0
-  explosionForce: 300
+  explosionForce: 3000
   player: {fileID: 0}
   explosionSound: {fileID: 8300000, guid: 95c7ab4f705ae9341896c99d37a03eac, type: 3}
   sidemod: 0.2

@@ -78,7 +78,9 @@ public class BulletBehaviour : MonoBehaviour
             //if (temp != null)
             if (rigid != null)
             {
-                AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                // rigid.AddTorque(addTorqueAmountInDegrees * Mathf.Deg2Rad * rigid.inertia);
+                AddExplosionForce(rigid, explosionForce, transform.position, explosionRadius);
             }
 
             if (colliders[i].gameObject.GetComponent<IDamageable>() != null)
@@ -90,36 +92,57 @@ public class BulletBehaviour : MonoBehaviour
         Destroy(toRemove, .5f);
     }
 
-    public void AddExplosionForce(float explosionForce, Vector3 explosionPosition, float explosionRadius, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
-    {
 
-        var explosionDir = player.transform.position - explosionPosition;
+    public void AddExplosionForce(Rigidbody2D rb, float explosionForce, Vector2 explosionPosition, float explosionRadius, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
+    {
+        var explosionDir = rb.position - explosionPosition;
         var explosionDistance = explosionDir.magnitude;
 
         // Normalize without computing magnitude again
         if (upwardsModifier == 0)
-        {
             explosionDir /= explosionDistance;
-        }
         else
         {
             // From Rigidbody.AddExplosionForce doc:
             // If you pass a non-zero value for the upwardsModifier parameter, the direction
             // will be modified by subtracting that value from the Y component of the centre point.
             explosionDir.y += upwardsModifier;
+            explosionDir.Normalize();
         }
-        explosionDir *= -1;
-        // //explosionDir.Normalize();
-        // rb2 = player.GetComponent<Rigidbody2D>();
-        // rb2.AddForce(Mathf.Lerp(0, explosionForce, (1.5f - explosionDistance)) * explosionDir, mode);
-        PlayerController playerScript = player.GetComponent<PlayerController>();
 
-        //playerScript.DisableGrounded = true;
-        //playerScript.grounded = false;
-        rb2.velocity += Vector2.up * explosionDir.y * explosionForce * -1 / 10 * upmod;
-        playerScript.velocity += explosionForce * (1.25f - explosionDistance) * Vector2.right * explosionDir.x * sidemod;
-        //playerScript.DisableGrounded = false;
+        rb.AddForce(Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir, mode);
     }
+
+    // public void AddExplosionForce(Rigidbody2D rigid, float explosionForce, Vector3 explosionPosition, float explosionRadius, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
+    // {
+
+    //     var explosionDir = rigid.transform.position - explosionPosition;
+    //     var explosionDistance = explosionDir.magnitude;
+
+    //     // Normalize without computing magnitude again
+    //     if (upwardsModifier == 0)
+    //     {
+    //         explosionDir /= explosionDistance;
+    //     }
+    //     else
+    //     {
+    //         // From Rigidbody.AddExplosionForce doc:
+    //         // If you pass a non-zero value for the upwardsModifier parameter, the direction
+    //         // will be modified by subtracting that value from the Y component of the centre point.
+    //         explosionDir.y += upwardsModifier;
+    //     }
+    //     explosionDir *= -1;
+    //     // //explosionDir.Normalize();
+    //     // rb2 = player.GetComponent<Rigidbody2D>();
+    //     // rb2.AddForce(Mathf.Lerp(0, explosionForce, (1.5f - explosionDistance)) * explosionDir, mode);
+    //     // PlayerController playerScript = player.GetComponent<PlayerController>();
+
+    //     //playerScript.DisableGrounded = true;
+    //     //playerScript.grounded = false;
+    //     rigid.velocity += Vector2.up * explosionDir.y * explosionForce * -1 / 10 * upmod;
+    //     rigid.velocity += explosionForce * (1.25f - explosionDistance) * Vector2.right * explosionDir.x * sidemod;
+    //     //playerScript.DisableGrounded = false;
+    // }
 
 
 }
